@@ -3,7 +3,7 @@
 
 pipeline {
      environment {
-       ID_DOCKER = "claire1306"
+       ID_DOCKER = "choco1992"
        IMAGE_NAME = "alpinehelloworld"
        IMAGE_TAG = "latest"
 //       PORT_EXPOSED = "80" à paraméter dans le job
@@ -25,7 +25,7 @@ pipeline {
             steps {
                script {
                  sh '''
-                    echo "Clean Environment ok"
+                    echo "Clean Environment"
                     docker rm -f $IMAGE_NAME || echo "container does not exist"
                     docker run --name $IMAGE_NAME -d -p ${PORT_EXPOSED}:5000 -e PORT=5000 ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG
                     sleep 5
@@ -118,5 +118,6 @@ pipeline {
         slackNotifier currentBuild.result
       }
     }  
-  }
+  }  
+     
 }
